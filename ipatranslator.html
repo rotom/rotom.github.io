@@ -1,0 +1,147 @@
+<html>
+	<script type="text/javascript">
+		var xhr = new XMLHttpRequest();
+		var pronDict = {};
+		var arpabetToIpaMap = {
+		"AA":"&#593;",
+		"AE":"&aelig;",
+		"AH0":"&#601;",
+		"AH1":"&#652;&#769;",
+		"AH2":"&#652;&#768;",
+		"AO":"&#596;",
+		"AW":"a&#650;",
+		"AY":"a&#618;",
+		"B":"b",
+		"CH":"t&#643;",
+		"D":"d",
+		"DH":"&eth;",
+		"EH":"&epsilon;",
+		"ER":"&#602;", //this is actually what arpabet AXR maps, but this seems closer to reality given the cmu transcriptions
+		"EY":"e&#618;",
+		"F":"f",
+		"G":"g",
+		"HH":"h",
+		"IH":"&#618;",
+		"IY":"i",
+		"JH":"d&#658;",
+		"K":"k",
+		"L":"l",
+		"M":"m",
+		"N":"n",
+		"NG":"&#331;",
+		"OW":"o&#650;",
+		"OY":"&#596;&#618;",
+		"P":"p",
+		"R":"&#633;",
+		"S":"s",
+		"SH":"&#643;",
+		"T":"t",
+		"TH":"&theta;",
+		"UH":"&#650;",
+		"UW":"u",
+		"V":"v",
+		"W":"w",
+		"Y":"j",
+		"Z":"z",
+		"ZH":"&#658;",		
+		};
+		
+		//populate the formatted CMU dictionary
+		xhr.onreadystatechange = function(){
+			if(xhr.readyState == 4 && xhr.status == 200){
+				text = xhr.responseText;
+				lines = text.split("\n");
+				for (i=0; i < lines.length; i++){
+					line = lines[i].split(" ");
+					word = line.shift() //the word is the first thing in the list
+					line.shift(); //get rid of pointless space
+					//console.log(line);
+					pronDict[word] = line; //creates key: value pairs of word and an array that corresponds to arpabet pronunciation
+					//console.log(pronDict[line[0]].join());
+				}
+			}
+		}
+		xhr.open("GET","https://people.ucsc.edu/~tdrobert/cmudict-0.7b");
+		xhr.send();
+		console.log("yay2")
+		
+		function getTranscription(input) {
+			//input must be all uppercase
+			var arpabetInput = pronDict[input];
+			console.log(arpabetInput);
+			var output = "";
+			if (arpabetInput != undefined){
+				for (i = 0; i < arpabetInput.length; i++) {
+					var thisChar = arpabetInput[i];
+					stress = ""
+					//handle for providing stress accents
+					//this isn't totally kosher ipa but it's a lot easier
+					//that syllabification
+					if (thisChar.length > 2 && thisChar.slice(0,-1) != "AH") {
+						if (thisChar.slice(-1) == "1") {
+							stress = "&#769;";
+						} else if (thisChar.slice(-1) == "2") {
+							stress = "&#768;";
+						}
+						thisChar = thisChar.slice(0, -1);
+					}
+					output += arpabetToIpaMap[thisChar] + stress;
+				} 
+			} else {
+				window.alert("Invalid input")
+			}
+			return output
+		}
+			
+		function writeAnswer() {
+		
+			//TODO:
+			//Syllabification
+			//Flaps
+			//Aspiration
+		
+			var userInput = document.getElementById('inputbox').value.toUpperCase();
+			answer = getTranscription(userInput);
+			
+			function getAltPron(i){
+				altPron = userInput+"("+i.toString()+")";
+				if (pronDict[altPron] != undefined) {
+					answer += "<br />" +(i+1).toString() + ". " + getTranscription(altPron);
+				}
+			}
+			
+			[1,2,3].forEach(getAltPron);
+	
+			
+			if (answer != "") {
+				document.getElementById("translation").innerHTML = "Results for <b>"+document.getElementById('inputbox').value+ "</b>:<br />1. "+answer;
+			}	
+		}
+		
+		function syllabify(ipaWord){
+			//for knowing where to put stress markers
+			//as well as certain allophonic variations (e.g. flapping)
+			//btw this is a non-trivial problem
+		}
+		
+	</script>
+	<body>
+		<div id="content" style="width:500px;text-align:center;position:absolute;left:0;
+		right:0;top:100px;margin:auto;">
+			<h2>English to IPA Translator</h2>
+			
+			<p style="text-align:justify;"><strong>Instructions</strong>: Type an English word in the box and click "Translate".
+				The (approximate) phonemic <a href="https://en.wikipedia.org/wiki/International_Phonetic_Alphabet">IPA</a> translation for American English will appear below. (Primary stress is notated with an acute accent, and secondary stress with a grave accent.)
+				Pronunciations come from the <a href="http://www.speech.cs.cmu.edu/cgi-bin/cmudict"> CMU pronouncing dictionary</a>. <br /></p>
+			
+			<div id="input">
+				<input type="text" name="inputbox" id="inputbox" value=""
+					   onkeydown = "if (event.keyCode == 13)
+                        document.getElementById('inputbutton').click()"><br /><br />
+				<input type="button" id="inputbutton" value="Translate" onClick="writeAnswer()">
+			</div>
+			<div id="translation">
+			</div>
+		</div>
+	</body>
+</html>
