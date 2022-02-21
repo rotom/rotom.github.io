@@ -1,6 +1,6 @@
 h1 {
 	color: #939393;
-	font-family: 'Source Code Pro', monospace;
+	font-family: 'IBM Plex Mono', monospace;
 	font-size:3em;
 	text-align:center;
 }
@@ -10,26 +10,27 @@ ul#nav-ul {
 	list-style:none;
 }
 ul#nav-ul li{
-    font-family:"PT Sans", sans-serif;
+    font-family:"IBM Plex Mono", monospace;
 	font-weight:bold;
     font-size:1.2em;
 	padding:15px;
 	display:inline;
 }
 ul#nav-ul li a:link{
-    color:#176117;
+    color:#000000;
     text-decoration:none;
 }
 ul#nav-ul li a:visited{
-    color:#176117;
+    color:#000000;
     text-decoration:none;
 }
+
 ul#nav-ul li a:hover{
-    color:#528B8B;
+    color:#a057ff;
     text-decoration:none;
 }
 ul#nav-ul li a:active{
-    color:#528B8B;
+    color:#a057ff;
     text-decoration:none;
 }
 ul#courselist li{
@@ -46,24 +47,26 @@ ul#courselist li{
 	padding-bottom:20px;
 }
 .content  p{
-	font-family:Raleway, sans-serif;
+	font-family:'IBM Plex Mono', monospace;
+	font-size: 1.3em;
 	line-spacing:40px;
-}
+	color:#000000
+;}
 
 .content a:link{
-	color:#00CDCD;
+	color:#a057ff;
 	text-decoration:none;
 }
 .content a:visited{
-	color:#00CDCD;
+	color:#a057ff;
 	text-decoration:none;
 }
 .content a:hover{
-	color:#FF0000;
+	color:#a057ff;
 	text-decoration:none;
 }
 .content a:active{
-	color:#FF0000;
+	color:#a057ff;
 	text-decoration:none;
 }
 .content img{
