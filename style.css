@@ -2,74 +2,116 @@ h1 {
 	color: #939393;
 	font-family: 'IBM Plex Mono', monospace;
 	font-size:3em;
-	text-align:center;
+	text-align:left;
 }
-ul#nav-ul {
-    text-align:center;
-	min-width:600px;
-	list-style:none;
+
+h2 {
+	color: #939393;
+	font-family: 'IBM Plex Mono', monospace;
+	font-size:1.5em;
+	font-weight: 600;
 }
-ul#nav-ul li{
+
+.container {
+	width: 980px;
+	padding-top: 20px;
+	margin: 0 auto;
+}
+
+.float {
+	float:left;
+}
+
+#phantom {
+	min-height: 1px;
+	height: 100%;
+	width: 160px;
+	padding-right: 20px;
+}
+
+#name {
+
+	width:800px;
+	margin-left:auto;
+	margin-right:auto;
+}
+
+#nav {
+	height: 100%; /* Full-height: remove this if you want "auto" height */
+	width: 160px; /* Set the width of the sidebar */
+  	overflow-x: hidden; /* Disable horizontal scroll */
+  	padding-top: 20px;
+  	padding-right: 20px;
+}
+
+
+#nav a {
+    color:#000000;
+    text-decoration:none;
     font-family:"IBM Plex Mono", monospace;
 	font-weight:bold;
     font-size:1.2em;
-	padding:15px;
-	display:inline;
+	padding: 6px 8px 6px 16px;
+	display:block;
 }
-ul#nav-ul li a:link{
-    color:#000000;
-    text-decoration:none;
-}
-ul#nav-ul li a:visited{
+
+#nav a:visited{
     color:#000000;
     text-decoration:none;
 }
 
-ul#nav-ul li a:hover{
+#nav a:hover{
     color:#a057ff;
     text-decoration:none;
 }
-ul#nav-ul li a:active{
+#nav a:active{
     color:#a057ff;
     text-decoration:none;
 }
+
 ul#courselist li{
 	font-family:Raleway, sans-serif;
 	line-spacing:40px;
 }
-.nav hr{
+
+#content {
+
 	width:800px;
-}
-.content{
-	width:800px;
-        margin-left:auto;
+    margin-left:auto;
 	margin-right:auto;
 	padding-bottom:20px;
+
 }
-.content  p{
+#content  p{
 	font-family:'IBM Plex Mono', monospace;
 	font-size: 1.3em;
 	line-spacing:40px;
 	color:#000000
 ;}
 
-.content a:link{
+#content  li{
+	font-family:'IBM Plex Mono', monospace;
+	font-size: 1.3em;
+	line-spacing:40px;
+	color:#000000
+;}
+#content a:link{
 	color:#a057ff;
 	text-decoration:none;
 }
-.content a:visited{
+#content a:visited{
 	color:#a057ff;
 	text-decoration:none;
 }
-.content a:hover{
+#content a:hover{
 	color:#a057ff;
 	text-decoration:none;
 }
-.content a:active{
+#content a:active{
 	color:#a057ff;
 	text-decoration:none;
 }
-.content img{
+#content img{
 	float:right;
 	margin-top:5px;
 	margin-left:10px;
@@ -88,6 +130,11 @@ ul#courselist li{
 .footer img {
 	margin-top:3px;
 	display:inline-block;
+}
+
+.teachingitems p {
+
+	padding-left:40px;
 }
 
 .ohbox {
