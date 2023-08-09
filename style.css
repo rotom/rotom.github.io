@@ -12,6 +12,10 @@ h2 {
 	font-weight: 600;
 }
 
+td {
+	text-align:vertical;
+}
+
 .container {
 	width: 980px;
 	padding-top: 20px;
